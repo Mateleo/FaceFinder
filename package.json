@@ -9,9 +9,15 @@
   },
   "devDependencies": {
     "@nuxtjs/google-fonts": "3.0.0-1",
+    "@types/string-similarity": "^4.0.0",
     "autoprefixer": "^10.4.13",
     "nuxt": "^3.1.2",
     "postcss": "^8.4.21",
     "tailwindcss": "^3.2.6"
+  },
+  "dependencies": {
+    "animate.css": "^4.1.1",
+    "dayjs": "^1.11.7",
+    "string-similarity": "^4.0.4"
   }
 }

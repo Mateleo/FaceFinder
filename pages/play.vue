@@ -1,0 +1,91 @@
+<script lang="ts" setup>
+import similarity from "string-similarity";
+definePageMeta({
+  layout: "game",
+});
+
+const guessList = ["Bruce Lee", "Audrey Hepburn"];
+let solution = ref(false);
+let found = ref(false);
+
+let currentguess = ref("");
+let input = ref("");
+
+function newguess() {
+  found.value = false;
+  solution.value = false;
+  input.value = "";
+  currentguess.value = guessList[Math.floor(Math.random() * guessList.length)];
+  console.log(currentguess.value);
+}
+
+function guess() {
+  console.log(input.value);
+  const result = similarity.compareTwoStrings(
+    currentguess.value.toLowerCase(),
+    input.value.toLowerCase()
+  );
+  result >= 0.7 ? (found.value = true) : "";
+  solution.value = true;
+}
+
+newguess();
+
+function image() {
+  return `/img/${currentguess.value.split(" ").join("").toLowerCase()}.jpg`;
+}
+
+function imageeyes() {
+  return `/img/${currentguess.value.split(" ").join("").toLowerCase()}_eyes.jpg`;
+}
+</script>
+<template>
+  <div class="m-auto relative">
+    <h1
+      v-show="solution"
+      class="text-white text-3xl mb-2 text-center font-bold animate__animated animate__fadeIn animate__slower"
+      :class="found ? 'text-green-600 visible' : 'text-red-600 visible'"
+    >
+      {{ currentguess }}
+    </h1>
+    <ClientOnly>
+      <div class="m-auto relative">
+        <img class="relative rounded-md" :src="imageeyes()" alt="" />
+        <img
+          class="absolute top-0 opacity-0 rounded-md"
+          :class="
+            solution
+              ? 'opacity-100  animate__animated animate__fadeIn animate__slower'
+              : ''
+          "
+          :src="image()"
+          alt=""
+        />
+      </div>
+    </ClientOnly>
+    <div class="-mt-24 absolute w-[95%]" :class="solution ? 'mt-3' : ''">
+      <div v-if="!solution" class="flex justify-center gap-2">
+        <input
+          v-model="input"
+          type="text"
+          placeholder="name..."
+          class="px-2 text-sm py-1 rounded-lg border-4 border-sky-600 shadow-md shadow-sky-600/40 bg-white/30 placeholder:text-black placeholder:italic focus:ring-red-600 focus:outline-none"
+        />
+        <button
+          @click="guess()"
+          class="bg-sky-600 font-bold px-3 py-2 rounded-lg shadow-md shadow-sky-600/40 border-[1px] border-sky-300"
+        >
+          GUESS
+        </button>
+      </div>
+      <div v-else class="flex justify-center">
+        <button
+          @click="newguess()"
+          class="bg-white/70 text-lg font-bold px-4 py-1 rounded-lg shadow-md shadow-white/20 text-black"
+        >
+          SUIVANT
+        </button>
+      </div>
+    </div>
+  </div>
+</template>

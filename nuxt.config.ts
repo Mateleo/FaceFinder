@@ -7,4 +7,14 @@ export default defineNuxtConfig({
     },
     preconnect: true,
   },
+  postcss: {
+    plugins: {
+      tailwindcss: {},
+      autoprefixer: {},
+    },
+  },
+  css: ['~/assets/css/main.css',"animate.css/animate.min.css"],
+  app: {
+    layoutTransition: { name: 'layout', mode: 'out-in' }
+  },
 });
