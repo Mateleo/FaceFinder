@@ -15,6 +15,13 @@ export default defineNuxtConfig({
   },
   css: ['~/assets/css/main.css',"animate.css/animate.min.css"],
   app: {
-    layoutTransition: { name: 'layout', mode: 'out-in' }
+    layoutTransition: { name: 'layout', mode: 'out-in' },
+    head: {
+      title: "FaceFinder 👀",
+      
+    },
   },
+  routeRules:{
+    "/play":{ssr:false}
+  }
 });
