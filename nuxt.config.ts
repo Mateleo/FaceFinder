@@ -26,6 +26,11 @@ export default defineNuxtConfig({
   pwa: {
     workbox: {
       enabled: true
+    },
+    manifest:{
+      name:"FaceFinder",
+      description:"Retrouve les visages à partir des yeux !",
+      lang:"fr"
     }
   }
 });
