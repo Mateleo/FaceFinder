@@ -28,7 +28,10 @@ let guessList = [
   "Kirk Douglas",
   "Paul Walker",
   "Tom Cruise",
-  "Virginie LeDoyen"
+  "Virginie LeDoyen",
+  "Clara",
+  "James Stewart",
+  "Sophia Loren"
 ];
 let solution = ref(false);
 let found = ref(false);
@@ -90,7 +93,7 @@ function imageeyes() {
         />
       </div>
     </ClientOnly>
-    <div class="-mt-24 absolute w-[95%]" :class="solution ? 'mt-3' : ''">
+    <div class="-mt-24 absolute m-auto flex justify-center w-full" :class="solution ? 'mt-3' : ''">
       <div v-if="!solution" class="flex justify-center gap-2">
         <input
           v-model="input"
