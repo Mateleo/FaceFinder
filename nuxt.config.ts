@@ -23,4 +23,9 @@ export default defineNuxtConfig({
   routeRules: {
     "/play": { ssr: false },
   },
+  pwa: {
+    workbox: {
+      enabled: true
+    }
+  }
 });
