@@ -55,7 +55,9 @@ function guess() {
     currentguess.value.toLowerCase(),
     input.value.toLowerCase()
   );
+  console.log(result)
   result >= 0.7 ? (found.value = true) : "";
+  console.log(found.value)
   solution.value = true;
 }
 
@@ -74,9 +76,8 @@ function imageeyes() {
     <h1
       v-show="solution"
       class="text-white text-3xl mb-2 text-center font-bold animate__animated animate__fadeIn animate__slower"
-      :class="found ? 'text-green-600 visible' : 'text-red-600 visible'"
     >
-      {{ currentguess }}
+      {{found ? "✅" : "❌"}} {{ currentguess }} {{found ? "✅" : "❌"}}
     </h1>
     <ClientOnly>
       <div class="m-auto relative flex justify-center">
