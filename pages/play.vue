@@ -4,7 +4,32 @@ definePageMeta({
   layout: "game",
 });
 
-const guessList = ["Bruce Lee", "Audrey Hepburn"];
+let guessList = [
+  "Bruce Lee",
+  "Audrey Hepburn",
+  "Catherine Deneuve",
+  "Lily Collins",
+  "Vin Diesel",
+  "Vivien Leigh",
+  "Alain Delon",
+  "Courteney Cox",
+  "Ewan McGregor",
+  "Isabelle Adjani",
+  "Isabelle Huppert",
+  "Jean Paul Belmondo",
+  "Lily Rose Depp",
+  "Lino Ventura",
+  "Marion Cotillard",
+  "Romy Schneider",
+  "Will Smith",
+  "Ansel Elgort",
+  "Ben Affleck",
+  "Emily Ratajkowski",
+  "Kirk Douglas",
+  "Paul Walker",
+  "Tom Cruise",
+  "Virginie LeDoyen"
+];
 let solution = ref(false);
 let found = ref(false);
 
@@ -15,8 +40,10 @@ function newguess() {
   found.value = false;
   solution.value = false;
   input.value = "";
-  currentguess.value = guessList[Math.floor(Math.random() * guessList.length)];
-  console.log(currentguess.value);
+  const random = Math.floor(Math.random() * guessList.length)
+  currentguess.value = guessList[random];
+  console.log(currentguess.value, guessList.length)
+  guessList =  guessList.filter(e=>e!=guessList[random])
 }
 
 function guess() {
@@ -49,7 +76,7 @@ function imageeyes() {
       {{ currentguess }}
     </h1>
     <ClientOnly>
-      <div class="m-auto relative">
+      <div class="m-auto relative flex justify-center">
         <img class="relative rounded-md" :src="imageeyes()" alt="" />
         <img
           class="absolute top-0 opacity-0 rounded-md"
